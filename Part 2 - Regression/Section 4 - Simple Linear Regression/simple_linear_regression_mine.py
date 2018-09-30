@@ -41,7 +41,7 @@ plt.show()
 
 # Visualising the Test set results
 # 画点
-plt.scatter(x_train,y_train,color='red')
+plt.scatter(x_test,y_test,color='red')
 # 画线
 plt.plot(x_train,regressor.predict(x_train),color='green')
 plt.title('Salary VS Experience (test set)')
