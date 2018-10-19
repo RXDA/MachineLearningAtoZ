@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri Oct 19 22:07:18 2018
+Created on Fri Oct 19 22:45:24 2018
 
 @author: rxda
 """
+
 # Classification template
 
 # Importing the libraries
@@ -22,15 +23,16 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)
 
 # Feature Scaling
+# 
 from sklearn.preprocessing import StandardScaler
 sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
 # Fitting the classifier to the Training set
-from sklearn.naive_bayes import GaussianNB
-classifier = GaussianNB()
-classifier.fit(X_train, y_train)
+from sklearn.tree import DecisionTreeClassifier
+classifier = DecisionTreeClassifier(criterion = 'gini', random_state=0)
+classifier.fit(X_train,y_train)
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
@@ -51,7 +53,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('orange', 'blue'))(i), label = j)
-plt.title('Naive Bayes Classifier (Training set)')
+plt.title('Decision Tree Classifier (Training set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
@@ -69,7 +71,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('orange', 'blue'))(i), label = j)
-plt.title('Naive Bayes Classifier (Test set)')
+plt.title('Decision Tree Classifier (Test set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
